@@ -67,13 +67,17 @@ public class ClanKDRPlugin extends Plugin {
 		if (event.getMessage().contains("has defeated")) {
 			clanKills++;
 			String killValue = StringUtils.substringBetween(event.getMessage(), "(", ")");
-			clanKillsTotalValue += Integer.parseInt(killValue.replace(",", "").replace("coins", "").replace(" ", ""));
+			if (killValue != null) {
+				clanKillsTotalValue += Integer.parseInt(killValue.replace(",", "").replace("coins", "").replace(" ", ""));
+			}
 		}
 
 		if (event.getMessage().contains("has been defeated")) {
 			clanDeaths++;
 			String deathValue = StringUtils.substringBetween(event.getMessage(), "(", ")");
-			clanDeathsTotalValue += Integer.parseInt(deathValue.replace(",", "").replace("coins", "").replace(" ", ""));
+			if (deathValue != null) {
+				clanDeathsTotalValue += Integer.parseInt(deathValue.replace(",", "").replace("coins", "").replace(" ", ""));
+			}
 		}
 	}
 }
