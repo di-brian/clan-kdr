@@ -65,10 +65,19 @@ public class ClanKDRPlugin extends Plugin {
 		}
 
 		if (event.getMessage().contains("has defeated")) {
-			clanKills++;
 			String killValue = StringUtils.substringBetween(event.getMessage(), "(", ")");
+			if (config.excludeLowLoot()){
+				if(killValue == null){
+					return;
+				}
+				int value = getKillValue(killValue);
+				if(value <= config.minimumValue()){
+					return;
+				}
+			}
+			clanKills++;
 			if (killValue != null) {
-				clanKillsTotalValue += Integer.parseInt(killValue.replace(",", "").replace("coins", "").replace(" ", ""));
+				clanKillsTotalValue += getKillValue(killValue);
 			}
 		}
 
@@ -76,8 +85,12 @@ public class ClanKDRPlugin extends Plugin {
 			clanDeaths++;
 			String deathValue = StringUtils.substringBetween(event.getMessage(), "(", ")");
 			if (deathValue != null) {
-				clanDeathsTotalValue += Integer.parseInt(deathValue.replace(",", "").replace("coins", "").replace(" ", ""));
+				clanDeathsTotalValue += getKillValue(deathValue);
 			}
 		}
+	}
+
+	private int getKillValue(String killMsg){
+		return Integer.parseInt(killMsg.replace(",", "").replace("coins", "").replace(" ", ""));
 	}
 }
