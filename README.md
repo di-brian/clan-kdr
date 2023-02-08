@@ -7,4 +7,6 @@ Value display can be toggled on and off in the configuration
 
 A minimum kill value can also be set, kills below this value will not be added to "Kills" if enabled
 
-![alt text](https://i.imgur.com/kpTjPxF.png)
+Deaths of members in your own clan chat can be excluded where they have died for no loot with the last option
+
+![alt text](https://i.imgur.com/DtMHQHe.png)

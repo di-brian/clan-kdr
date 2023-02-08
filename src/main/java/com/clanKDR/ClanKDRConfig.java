@@ -40,4 +40,14 @@ public interface ClanKDRConfig extends Config {
 	{
 		return 1;
 	}
+
+	@ConfigItem(
+			keyName = "excludeZeroValueDeaths",
+			name = "Exclude zero value deaths",
+			description = "Configures if deaths with no value should be counted",
+			position = 4
+	)
+	default boolean excludeZeroValueDeaths() {
+		return true;
+	}
 }
