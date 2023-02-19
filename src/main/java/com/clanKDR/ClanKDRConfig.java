@@ -50,4 +50,12 @@ public interface ClanKDRConfig extends Config {
 	default boolean excludeZeroValueDeaths() {
 		return true;
 	}
+
+	@ConfigItem(
+		keyName = "excludeFriendlyFire",
+		name = "Exclude friendly fire",
+		description = "Excludes kills and deaths between clan members",
+		position = 5
+	)
+	default boolean excludeFriendlyFire() { return true; }
 }
