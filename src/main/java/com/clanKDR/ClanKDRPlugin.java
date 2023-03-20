@@ -63,7 +63,7 @@ public class ClanKDRPlugin extends Plugin {
 
 	@Subscribe
 	public void onChatMessage(ChatMessage event) {
-		if (event.getType() != ChatMessageType.CLAN_CHAT) {
+		if (event.getType() != ChatMessageType.CLAN_MESSAGE) {
 			return;
 		}
 
