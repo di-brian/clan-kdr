@@ -63,7 +63,7 @@ public class ClanKDRPlugin extends Plugin {
 
 	@Subscribe
 	public void onChatMessage(ChatMessage event) {
-		if (event.getType() != ChatMessageType.CLAN_MESSAGE) {
+		if (event.getType() != ChatMessageType.CLAN_CHAT) {
 			return;
 		}
 
@@ -95,9 +95,11 @@ public class ClanKDRPlugin extends Plugin {
 
 		if (event.getMessage().contains("has been defeated")) {
 			if(config.excludeFriendlyFire()){
-				String playerKiller = StringUtils.substringBetween(event.getMessage(), "has been defeated by ", " in The Wilderness");
-				if(playerKiller.isEmpty()){
-					playerKiller = StringUtils.substringBetween(event.getMessage(), "has been defeated by ", "  and lost");
+				String playerKiller;
+				if(event.getMessage().contains("Wilderness")){
+					playerKiller = StringUtils.substringBetween(event.getMessage(), "has been defeated by ", " in The Wilderness");
+				}else{
+					playerKiller = StringUtils.substringBetween(event.getMessage(), "has been defeated by ", " and lost");
 				}
 				ClanSettings clanSettings = this.client.getClanSettings();
 				for (ClanMember clanMember : clanSettings.getMembers()) {
