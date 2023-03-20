@@ -57,5 +57,5 @@ public interface ClanKDRConfig extends Config {
 		description = "Excludes kills and deaths between clan members",
 		position = 5
 	)
-	default boolean excludeFriendlyFire() { return true; }
+	default boolean excludeFriendlyFire() { return false; }
 }

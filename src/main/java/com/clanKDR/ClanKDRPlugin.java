@@ -95,7 +95,12 @@ public class ClanKDRPlugin extends Plugin {
 
 		if (event.getMessage().contains("has been defeated")) {
 			if(config.excludeFriendlyFire()){
-				String playerKiller = StringUtils.substringBetween(event.getMessage(), "has been defeated by ", " in The Wilderness");
+				String playerKiller;
+				if(event.getMessage().contains("Wilderness")){
+					playerKiller = StringUtils.substringBetween(event.getMessage(), "has been defeated by ", " in The Wilderness");
+				}else{
+					playerKiller = StringUtils.substringBetween(event.getMessage(), "has been defeated by ", " and lost");
+				}
 				ClanSettings clanSettings = this.client.getClanSettings();
 				for (ClanMember clanMember : clanSettings.getMembers()) {
 					if(Text.toJagexName(clanMember.getName()).equalsIgnoreCase(Text.toJagexName(playerKiller))){
